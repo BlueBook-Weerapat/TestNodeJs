@@ -1,26 +1,20 @@
 const http = require('http');
+const fs = require('fs');
 const port = 3000
 
 const server = http.createServer(render).listen(3000);
 console.log('connect server success at ' + port);
 
 function render(req, res){
-    res.writeHead(200,{'content-type': "text/html"});
-    let html = `
-    <!DOCTYPE html>
-<html>
-<head>
-<title>test node.js</title>
-</head>
-<body>
-
-<h1> node.js</h1>
-<p>Node run.</p>
-
-</body>
-</html>   
-    `;
-    res.write(html);
-    for(k in http.STATUS_CODES){res.write(`${k} : ${http.STATUS_CODES[k]} <br>`);}
-    res.end();           
+    let ctype = {'content-type': "text/html"}
+    fs.readFile('index.html', (err,content)=>{
+        if(!err){
+            res.writeHead(200,ctype)
+            res.write(content)
+        }else{
+            res.writeHead(404,ctype)
+            res.write(err.message)
+        }
+        return res.end()    
+    })
 }

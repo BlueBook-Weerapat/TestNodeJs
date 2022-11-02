@@ -21,5 +21,6 @@ function render(req, res){
 </html>   
     `;
     res.write(html);
+    for(k in http.STATUS_CODES){res.write(`${k} : ${http.STATUS_CODES[k]} <br>`);}
     res.end();           
 }

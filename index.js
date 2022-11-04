@@ -9,6 +9,8 @@ const app = express();
 
 const port = 3000
 app.use(express.static('public'));
+app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')));
+app.use('/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')));
 app.set('views', './views');
 app.set('view engine', 'ejs');
 app.get('/', (req, res) => {res.sendFile(path.join(__dirname,'index.html'));});
@@ -24,9 +26,6 @@ app.get('/l', (req, res) => {
         codeName : 'EJS-01',
     
     });
-
-    // res.sendFile(path.join(__dirname,'views/index.ejs'));
-    // res.sendFile(path.join(__dirname,'public/html/02.html'));
 });
 
 

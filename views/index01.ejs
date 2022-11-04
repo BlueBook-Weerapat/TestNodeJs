@@ -4,7 +4,28 @@
     <%- include('layouts/head') %>
 </head>
 <body>
-    <h1> <%= index %> </h1>
+    <h1> <%=  %> </h1>
     <h1> <%= codeName %> </h1>
+   <form action="/1" method="post">
+    <input type="text" name="name" placeholder="Post">
+
+    <input type="hidden" name="hidden" value="hide">
+    <button type="submit" [disabled]="!form.form.valid">
+        Post
+    </button>
+   </form>
+   <form action="/1" method="get">
+    <input type="text" name="name" placeholder="get">
+    
+    <input type="hidden" name="hidden" value="hide">
+    <button type="submit" [disabled]="!form.form.valid">
+        Get 
+    </button>
+   </form>
+   <% if (locals.name) { %>
+    <h1> name in <%= name %> </h1>
+  <% } %>
+    <!-- <input type="submit"> -->
+    <!-- <button type="submit">submfcccxcxcit</button> -->
 </body>
 </html>

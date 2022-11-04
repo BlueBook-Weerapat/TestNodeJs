@@ -3,11 +3,13 @@ const url = require('url');
 const fs = require('fs');
 const path = require('path');
 const ejs = require('ejs');
+const bodyParser = require('body-parser');
 
 const express = require('express');
 const app = express();
 
 const port = 3000
+app.use(bodyParser.urlencoded({extended : true}));
 app.use(express.static('public'));
 app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')));
 app.use('/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')));
@@ -20,10 +22,31 @@ app.get('/02', (req, res) => {res.sendFile(path.join(__dirname,'index copy 2.htm
 app.get('/03', (req, res) => {res.sendFile(path.join(__dirname,'index copy 3.html'));});
 app.get('/04', (req, res) => {res.sendFile(path.join(__dirname,'index copy 4.html'));});
 
-app.get('/l', (req, res) => {
+app.get('/1', (req, res) => {
     res.render('index01',{
         index : '01',
         codeName : 'EJS-01',
+        name : req.query.name                //query
+    
+    });
+});
+app.post('/1', (req, res) => {
+    let data = {
+        index : '03',
+        codeName : 'EJS-03'}
+    if (req.body.name){
+        data = {
+            index : '03',
+            codeName : 'EJS-03',
+            name : req.body.name                  //body
+        }
+    } 
+    res.render('index01',data);
+});
+app.get('/2', (req, res) => {
+    res.render('index02',{
+        index : '02',
+        codeName : 'EJS-02',
     
     });
 });

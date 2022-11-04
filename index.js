@@ -22,18 +22,12 @@ app.get('/02', (req, res) => {res.sendFile(path.join(__dirname,'index copy 2.htm
 app.get('/03', (req, res) => {res.sendFile(path.join(__dirname,'index copy 3.html'));});
 app.get('/04', (req, res) => {res.sendFile(path.join(__dirname,'index copy 4.html'));});
 
-app.get('/1', (req, res) => {
-    res.render('index01',{
-        index : '01',
-        codeName : 'EJS-01',
-        name : req.query.name                //query
-    
-    });
-});
-app.post('/1', (req, res) => {
+
+app.all('/1', (req, res) => {
     let data = {
-        index : '03',
-        codeName : 'EJS-03'}
+        index : '04',
+        codeName : 'EJS-04',
+        name : 'empty'}
     if (req.body.name){
         data = {
             index : '03',

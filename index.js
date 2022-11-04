@@ -2,18 +2,32 @@ const http = require('http');
 const url = require('url'); 
 const fs = require('fs');
 const path = require('path');
+const ejs = require('ejs');
 
 const express = require('express');
 const app = express();
 
 const port = 3000
-
+app.use(express.static('public'));
+app.set('views', './views');
+app.set('view engine', 'ejs');
 app.get('/', (req, res) => {res.sendFile(path.join(__dirname,'index.html'));});
 // app.get('/:data', (req, res) => {res.send('11');});
 app.get('/01', (req, res) => {res.sendFile(path.join(__dirname,'index copy 1.html'));});
 app.get('/02', (req, res) => {res.sendFile(path.join(__dirname,'index copy 2.html'));});
 app.get('/03', (req, res) => {res.sendFile(path.join(__dirname,'index copy 3.html'));});
 app.get('/04', (req, res) => {res.sendFile(path.join(__dirname,'index copy 4.html'));});
+
+app.get('/l', (req, res) => {
+    res.render('index01',{
+        index : '01',
+        codeName : 'EJS-01',
+    
+    });
+
+    // res.sendFile(path.join(__dirname,'views/index.ejs'));
+    // res.sendFile(path.join(__dirname,'public/html/02.html'));
+});
 
 
 app.use((req, res)=>{

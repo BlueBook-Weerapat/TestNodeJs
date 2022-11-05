@@ -13,6 +13,7 @@ app.use(bodyParser.urlencoded({extended : true}));
 app.use(express.static('public'));
 app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')));
 app.use('/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')));
+app.use('/axios',express.static(path.join(__dirname, 'node_modules/axios/dist/axios.min.js')));
 app.set('views', './views');
 app.set('view engine', 'ejs');
 app.get('/', (req, res) => {res.sendFile(path.join(__dirname,'index.html'));});

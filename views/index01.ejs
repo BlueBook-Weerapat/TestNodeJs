@@ -4,24 +4,44 @@
     <%- include('layouts/head') %>
 </head>
 <body>
+    <% if (!locals.name) { %>
     <h1> <%=  %> </h1>
     <h1> <%= codeName %> </h1>
-   <form action="/1" method="post">
+   <!-- <form action="/1" method="post">
     <input type="text" name="name" placeholder="Post">
 
     <input type="hidden" name="hidden" value="hide">
     <button type="submit" [disabled]="!form.form.valid">
         Post
     </button>
-   </form>
+   </form> -->
    <form action="/1" method="get">
-    <input type="text" name="name_G" placeholder="get">
+    <input type="text" name="name" placeholder="name" ><br>
     
     <input type="hidden" name="hidden" value="hide">
     <button type="submit" [disabled]="!form.form.valid">
         Get 
     </button>
    </form>
+
+   <form action="/1" method="post">
+    <input type="text" name="name" placeholder="name" ><br>
+    
+    <input type="hidden" name="hidden" value="hide">
+    <button type="submit" [disabled]="!form.form.valid">
+        Post 
+    </button>
+   </form>
+
+
+
+
+
+
+
+
+  <% } %>
+
    <% if (locals.name) { %>
     <h1> name in <%= name %> </h1>
   <% } %>

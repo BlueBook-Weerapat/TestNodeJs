@@ -25,25 +25,33 @@ app.get('/04', (req, res) => {res.sendFile(path.join(__dirname,'index copy 4.htm
 
 app.all('/1', (req, res) => {
     let data = {
-        index : '04',
-        codeName : 'EJS-04',
-        name : 'empty'}
+        index : 'FORM',
+        codeName : 'EJS-FORM',
+        // name : 'empty'
+    }
+    if (req.query.name){
+        data = {
+            index : 'GET',
+            codeName : 'EJS-GET',
+            name : req.query.name                  //get
+        }    
+    } 
     if (req.body.name){
         data = {
-            index : '03',
-            codeName : 'EJS-03',
-            name : req.body.name                  //body
-        }
+            index : 'POST',
+            codeName : 'EJS-POST',
+            name : req.body.name                  //post
+        }    
     } 
     res.render('index01',data);
 });
-app.get('/2', (req, res) => {
-    res.render('index02',{
-        index : '02',
-        codeName : 'EJS-02',
+// app.get('/2', (req, res) => {
+//     res.render('index02',{
+//         index : '02',
+//         codeName : 'EJS-02',
     
-    });
-});
+//     });
+// });
 
 
 app.use((req, res)=>{

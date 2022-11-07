@@ -5,10 +5,9 @@ const path = require('path');
 const ejs = require('ejs');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const sessions = require('express-sessions');
-
-const express = require('express');
 const session = require('express-session');
+const model = require('./model')
+const express = require('express');
 const app = express();
 
 const port = 3000
